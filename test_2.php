@@ -7,9 +7,6 @@ else {
     $tess = file_get_contents('../forms/tests/' . $_GET['name']);
     $test = json_decode($tess, true);
 
-    echo "<pre>";
-    print_r($test);
-
     $answer0 = $_POST['answer0'];
     $answer1 = $_POST['answer1'];
     $answer2 = $_POST['answer2'];
