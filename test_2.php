@@ -1,31 +1,40 @@
 <?php
 
 
-if(!isset($_GET['name']) || !file_exists('./tests/' . $_GET['name']))
+if(!isset($_GET['name']) || !file_exists('./tests/' . $_GET['name'])){
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
     die('Invalid test name');
-else {
-    $tess = file_get_contents('../forms/tests/' . $_GET['name']);
-    $test = json_decode($tess, true);
+}
 
-    if (!empty($_POST)){
-        $answer0 = $_POST['answer0'];
-        $answer1 = $_POST['answer1'];
-        $answer2 = $_POST['answer2'];
-        $answer3 = $_POST['answer3'];
-        $result = 0;
-        if ($answer0 == $test[1]['true']) {
-            $result += 25;
+else {
+    $tess = file_get_contents('./tests/' . $_GET['name']);
+    $test = json_decode($tess, true);
+    if (isset($test[0]['crc']) && $test[0]['crc'] == "tipikinatestsonlycanberead") {
+        if (!empty($_POST)) {
+            $answer0 = $_POST['answer0'];
+            $answer1 = $_POST['answer1'];
+            $answer2 = $_POST['answer2'];
+            $answer3 = $_POST['answer3'];
+            $result  = 0;
+            if ($answer0 == $test[1]['true']) {
+                $result += 25;
+            }
+            if ($answer1 == $test[2]['true']) {
+                $result += 25;
+            }
+            if ($answer2 == $test[3]['true']) {
+                $result += 25;
+            }
+            if ($answer3 == $test[4]['true']) {
+                $result += 25;
+            }
+            echo "Вы прошли тест на <strong>$result%</strong>";
+            die;
         }
-        if ($answer1 == $test[2]['true']) {
-            $result += 25;
-        }
-        if ($answer2 == $test[3]['true']) {
-            $result += 25;
-        }
-        if ($answer3 == $test[4]['true']) {
-            $result += 25;
-        }
-        echo "Вы прошли тест на <strong>$result%</strong>";
+    }
+    else {
+        echo "<p style='color:red'> Неверный формат тестового файла</p>";
+        die;
     }
 }
 ?>

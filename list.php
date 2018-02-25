@@ -1,7 +1,7 @@
 
 
 <?php
-$filesPath = '../forms/tests/';
+$filesPath = './tests/';
 $files = scandir($filesPath);
 
 foreach ($files as $value)
