@@ -5,7 +5,7 @@ if(!isset($_GET['name']) || !file_exists('./tests/' . $_GET['name'])){
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
     die('Invalid test name');
 }
-
+/*загрузка json с тестом*/
 else {
     $tess = file_get_contents('./tests/' . $_GET['name']);
     $test = json_decode($tess, true);
@@ -16,6 +16,7 @@ else {
             $answer2 = $_POST['answer2'];
             $answer3 = $_POST['answer3'];
             $result  = 0;
+            /*проверка ответов с правильными ответами*/
             if ($answer0 == $test[1]['true']) {
                 $result += 25;
             }
@@ -38,7 +39,7 @@ else {
     }
 }
 ?>
-
+ /*форма в которую выгружается тест из json*/
 <form method="post" action="http://university.netology.ru/u/mtipikina/forms/test_2.php?name=<?=$_GET['name']?>">
     <p><b><?php echo $test[1]['question'] ?> </b><Br/>
         <input type="radio" name="answer0" value=<?= $test[1]['answer1'] ?>> <?= $test[1]['answer1'] ?><Br/>

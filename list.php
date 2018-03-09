@@ -1,5 +1,5 @@
 
-
+/*список тестов ссылками*/
 <?php
 $filesPath = './tests/';
 $files = scandir($filesPath);

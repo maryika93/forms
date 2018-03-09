@@ -1,5 +1,5 @@
 <?php
-
+/*Форма для загрузки файлов с тестами на сайт*/
 if (isset($_FILES['userfile']['name']) && !empty($_FILES['userfile']['name'])) {
     if ($_FILES['userfile']['error'] == UPLOAD_ERR_OK && move_uploaded_file($_FILES["userfile"]["tmp_name"], './tests/' . $_FILES["userfile"]["name"])) {
         $tess = file_get_contents( './tests/' . $_FILES["userfile"]["name"]);
