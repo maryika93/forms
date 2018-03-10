@@ -39,27 +39,15 @@ else {
     }
 }
 ?>
- /*форма в которую выгружается тест из json*/
+
+<?php foreach ($test as $tests) :?>
 <form method="post" action="http://university.netology.ru/u/mtipikina/forms/test_2.php?name=<?=$_GET['name']?>">
-    <p><b><?php echo $test[1]['question'] ?> </b><Br/>
-        <input type="radio" name="answer0" value=<?= $test[1]['answer1'] ?>> <?= $test[1]['answer1'] ?><Br/>
-        <input type="radio" name="answer0" value=<?= $test[1]['answer2'] ?>> <?= $test[1]['answer2'] ?><Br/>
-        <input type="radio" name="answer0" value=<?= $test[1]['answer3'] ?>> <?= $test[1]['answer3'] ?>
+    <p><b><?php echo $tests['question'] ?> </b><Br/>
+        <input type="radio" name="answer1" value=<?= $tests['answer1'] ?>> <?= $tests['answer1'] ?><Br/>
+        <input type="radio" name="answer2" value=<?= $tests['answer2'] ?>> <?= $tests['answer2'] ?><Br/>
+        <input type="radio" name="answer3" value=<?= $tests['answer3'] ?>> <?= $tests['answer3'] ?>
     </p>
-    <p><b><?php echo $test[2]['question'] ?> </b><Br/>
-        <input type="radio" name="answer1" value=<?= $test[2]['answer1'] ?>> <?= $test[2]['answer1'] ?><Br/>
-        <input type="radio" name="answer1" value=<?= $test[2]['answer2'] ?>> <?= $test[2]['answer2'] ?><Br/>
-        <input type="radio" name="answer1" value=<?= $test[2]['answer3'] ?>> <?= $test[2]['answer3'] ?>
-    </p>
-    <p><b><?php echo $test[3]['question'] ?> </b><Br/>
-        <input type="radio" name="answer2" value=<?= $test[3]['answer1'] ?>> <?= $test[3]['answer1'] ?><Br/>
-        <input type="radio" name="answer2" value=<?= $test[3]['answer2'] ?>> <?= $test[3]['answer2'] ?><Br/>
-        <input type="radio" name="answer2" value=<?= $test[3]['answer3'] ?>> <?= $test[3]['answer3'] ?>
-    </p>
-    <p><b><?php echo $test[4]['question'] ?> </b><Br/>
-        <input type="radio" name="answer3" value=<?= $test[4]['answer1'] ?>> <?= $test[4]['answer1'] ?><Br/>
-        <input type="radio" name="answer3" value=<?= $test[4]['answer2'] ?>> <?= $test[4]['answer2'] ?><Br/>
-        <input type="radio" name="answer3" value=<?= $test[4]['answer3'] ?>> <?= $test[4]['answer3'] ?>
-    </p>
+<?php endforeach; ?>
     <input type="submit" name="ready" value="Готово">
 </form>
+
