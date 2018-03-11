@@ -39,8 +39,11 @@ else {
     }
 }
 ?>
+var_dump($test);
+<?php foreach ($test as $tests):
+var_dump($tests);
+?>
 
-<?php foreach ($test as $tests) :?>
 <form method="post" action="http://university.netology.ru/u/mtipikina/forms/test_2.php?name=<?=$_GET['name']?>">
     <p><b><?php echo $tests['question'] ?> </b><Br/>
         <input type="radio" name="answer1" value=<?= $tests['answer1'] ?>> <?= $tests['answer1'] ?><Br/>
