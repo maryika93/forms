@@ -15,19 +15,13 @@ else {
 
         if (!empty($_POST)) {
             $result  = 0;
-            //foreach ($test as $testss):
-                //echo ($testss['true']);
-               /* $answer0 = $_POST['answer0'];
-                $answer1 = $_POST['answer1'];
-                $answer2 = $_POST['answer2'];
-                $answer3 = $_POST['answer3'];*/
-
-           /* if ($answer0 == $testss['true']) {
+            foreach ($test as $testss):
+            if (isset($_POST[$testss['true']])) {
                 $result += 25;
-            }*/
+            }
+            endforeach;
             echo "Вы прошли тест на <strong>$result%</strong>";
             die;
-            //endforeach;
         }
     }
     else {
@@ -39,12 +33,12 @@ else {
 <?php foreach ($test as $tests):?>
 
 <form method="post" action="http://university.netology.ru/u/mtipikina/forms/test_2.php?name=<?=$_GET['name']?>">
-    <p><b><?php echo $tests['question'] ?> </b><Br/>
-        <input type="radio" name=<?= $tests['answer1'] ?> value=<?= $tests['answer1'] ?>> <?= $tests['answer1'] ?><Br/>
-        <input type="radio" name=<?= $tests['answer2'] ?> value=<?= $tests['answer2'] ?>> <?= $tests['answer2'] ?><Br/>
-        <input type="radio" name=<?= $tests['answer3'] ?> value=<?= $tests['answer3'] ?>> <?= $tests['answer3'] ?>
+    <p><b><?php
+            echo $tests['question'];
+            foreach ($tests['answers'] as $val): ?> </b><Br/>
+        <input type="radio" name=<?= $val ?> value=<?= $val ?>> <?= $val ?><Br/>
     </p>
-<?php endforeach; ?>
+<?php endforeach?><?php  endforeach;?>
     <input type="submit" name="ready" value="Готово">
 </form>
 
