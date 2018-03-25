@@ -12,15 +12,31 @@ else {
 
     if (isset($test[0]['crc']) && $test[0]['crc'] == "tipikinatestsonlycanberead") {
 
-
         if (!empty($_POST)) {
-            $result  = 0;
-            foreach ($test as $testss):
-            if (isset($_POST[$testss['true']])) {
-                $result += 25;
+            $result = 0;
+            for ($i = 0; $i < count($test); $i++) {
+                //echo '<pre>';
+                //print_r($test[$i]);
+               // print_r($_POST[$i]);
+                if ($_POST[$i] == $test[$i]['true']) {
+                    $result += 1;
+                }
             }
-            endforeach;
-            echo "Вы прошли тест на <strong>$result%</strong>";
+            $a = count($test)-$result;
+            if ($a == 0){
+                $mark = 5;
+            }
+            if ($a == 1){
+                $mark = 4;
+            }
+            if ($a == 2){
+                $mark = 3;
+            }
+            if ($a > 2){
+                $mark = 2;
+            }
+
+            echo "Вы ответили на <strong>$result</strong> из <strong>". count($test). "</strong> вопросов, оценка <strong>$mark</strong>";
             die;
         }
     }
@@ -30,15 +46,18 @@ else {
     }
 }
 ?>
-<?php foreach ($test as $tests):?>
 
-<form method="post" action="http://university.netology.ru/u/mtipikina/forms/test_2.php?name=<?=$_GET['name']?>">
+<form method="post" action="test_2.php?name=<?=$_GET['name']?>">
+<?php for ($i=0;$i<count($test);$i++) {
+    $ctest = $test[$i];
+    ?>
     <p><b><?php
-            echo $tests['question'];
-            foreach ($tests['answers'] as $val): ?> </b><Br/>
-        <input type="radio" name=<?= $val ?> value=<?= $val ?>> <?= $val ?><Br/>
-    </p>
-<?php endforeach?><?php  endforeach;?>
+            echo $ctest['question'];
+            foreach ($ctest['answers'] as $val): ?> </b><Br/>
+                <input type="radio" name=<?= $i ?> value=<?= $val ?>> <?= $val ?><Br/>
+                </p>
+            <?php endforeach;
+}?>
     <input type="submit" name="ready" value="Готово">
 </form>
 
